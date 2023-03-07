@@ -7,6 +7,9 @@ mongoose.set('strictQuery', false);
 //file with connection string so we will not expose it in github
 const dbconnect = require('./db');
 
+//routes
+const recipeRoutes = require('./routes/recipe');
+
 const app = express();
 
 //default view engine
@@ -16,6 +19,8 @@ app.set('views', 'views');
 //path to css and js files (frontend)
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(recipeRoutes);
 
 //db connect and start server
 mongoose
